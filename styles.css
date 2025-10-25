@@ -1,0 +1,1311 @@
+/* ===================================
+   Global Styles & Variables
+   =================================== */
+/* Correção para transbordamento horizontal em telas pequenas */
+
+
+html,
+body {
+  overflow-x: hidden; /* Impede a rolagem horizontal */
+}
+
+/* Garante que imagens e outros elementos de mídia não transbordem */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Para elementos que usam o grid do Bootstrap ou outros sistemas de layout */
+.container,
+.container-fluid,
+.row {
+  overflow-x: hidden; /* Garante que o conteúdo dentro deles não force a rolagem */
+}
+
+
+
+  p{
+    text-align: justify;
+  }
+
+:root {
+  /* Simplificando paleta para tons de azul apenas */
+  --color-primary: #1e3a8a;
+  --color-primary-dark: #1e40af;
+  --color-primary-medium: #2563eb;
+  --color-primary-light: #dbeafe;
+  --color-secondary: #0f172a;
+  --color-accent: #3b82f6;
+  --color-accent-light: #60a5fa;
+
+  /* Tons de azul - paleta completa */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+
+  /* Cores neutras para contraste */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-border: #cbd5e1;
+
+  /* Typography */
+  --font-primary: "Crimson Text", "Georgia", serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", serif;
+  --font-accent: "Lora", serif;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(30, 58, 138, 0.08);
+  --shadow-md: 0 4px 16px rgba(30, 58, 138, 0.12);
+  --shadow-lg: 0 8px 32px rgba(30, 58, 138, 0.16);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Modo escuro com azuis escuros e alto contraste */
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-border: #334155;
+  --color-primary: #60a5fa;
+  --color-primary-light: rgba(96, 165, 250, 0.15);
+  --color-accent: #93c5fd;
+  --color-accent-light: #bfdbfe;
+
+  /* Invertendo tons de azul para modo escuro */
+  --color-blue-50: #172554;
+  --color-blue-100: #1e3a8a;
+  --color-blue-200: #1e40af;
+  --color-blue-300: #1d4ed8;
+  --color-blue-400: #2563eb;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #60a5fa;
+  --color-blue-700: #93c5fd;
+  --color-blue-800: #bfdbfe;
+  --color-blue-900: #dbeafe;
+  --color-blue-950: #eff6ff;
+}
+
+/* ===================================
+   Base Styles
+   =================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 18px; /* Aumentado para melhor legibilidade */
+  line-height: 1.8; /* Aumentado para texto mais respirável */
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color var(--transition-base), color var(--transition-base);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600; /* Peso mais refinado */
+  line-height: 1.3; /* Melhor espaçamento */
+  letter-spacing: -0.02em; /* Kerning mais apertado para elegância */
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+/* Melhor foco para acessibilidade */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Adicionando estilos para imagens e figuras */
+figure {
+  margin: 2rem 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-bg-secondary));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  border: 2px dashed var(--color-border);
+}
+
+/* ===================================
+   Navigation
+   =================================== */
+
+.navbar {
+  padding: 1.25rem 0;
+  transition: all var(--transition-base);
+  background-color: var(--color-bg) !important;
+  /* Adicionando borda sutil com tom de azul */
+  border-bottom: 1px solid transparent;
+}
+
+[data-theme="dark"] .navbar {
+  border-bottom-color: var(--color-blue-800);
+}
+
+.navbar.scrolled {
+  box-shadow: var(--shadow-sm);
+  /* Adicionando borda azul ao rolar */
+  border-bottom-color: var(--color-blue-200);
+}
+
+[data-theme="dark"] .navbar.scrolled {
+  border-bottom-color: var(--color-blue-700);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  transition: color var(--transition-fast);
+}
+
+.navbar-brand:hover {
+  color: var(--color-primary);
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  /* Usando gradiente de azuis mais vibrante */
+  background: linear-gradient(135deg, var(--color-blue-600), var(--color-blue-800));
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  transition: transform var(--transition-base);
+}
+
+[data-theme="dark"] .brand-icon {
+  background: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700));
+}
+
+.navbar-brand:hover .brand-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Melhorando contraste dos links em ambos os modos */
+.nav-link {
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  color: var(--color-text-secondary); /* Escuro no modo claro */
+  padding: 0.5rem 1rem !important;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+[data-theme="dark"] .nav-link {
+  color: #93c5fd; /* Azul claro muito visível no modo escuro */
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  color: #dbeafe; /* Azul muito claro ao hover no modo escuro */
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+[data-theme="dark"] .btn-icon {
+  border-color: var(--color-blue-700);
+  color: var(--color-blue-300);
+}
+
+.btn-icon:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+
+.hero-section {
+  padding-top: 80px;
+  /* Gradiente mais sutil no modo claro */
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+  position: relative;
+}
+
+[data-theme="dark"] .hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #172554 100%);
+}
+
+.hero-icon {
+  width: 60px;
+  height: 60px;
+  /* Usando tom de azul mais vibrante */
+  background: linear-gradient(135deg, var(--color-blue-100), var(--color-blue-200));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blue-700);
+  font-size: 1.75rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+[data-theme="dark"] .hero-icon {
+  background: linear-gradient(135deg, var(--color-blue-800), var(--color-blue-700));
+  color: var(--color-blue-200);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5rem); /* Maior e mais dramático */
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em; /* Kerning mais apertado */
+}
+
+.hero-title .text-primary {
+  color: var(--color-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .text-primary::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  /* Usando gradiente de azuis */
+  background: linear-gradient(90deg, transparent, var(--color-blue-300), transparent);
+  z-index: -1;
+}
+
+[data-theme="dark"] .hero-title .text-primary::after {
+  background: linear-gradient(90deg, transparent, var(--color-blue-700), transparent);
+}
+
+/* Melhorando contraste do subtítulo no hero */
+.hero-subtitle {
+  font-size: 1.35rem;
+  color: var(--color-text-secondary); /* Usa a variável que já tem bom contraste */
+  line-height: 1.9;
+  max-width: 650px;
+  font-family: var(--font-accent);
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Melhorando contraste dos itens da lista */
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--color-text-secondary); /* Usa a variável com bom contraste */
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.feature-list li:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.feature-list li:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.feature-list li:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.feature-list i {
+  color: var(--color-primary);
+  font-size: 0.5rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Quote Card */
+/* Ajustando cores do quote card para melhor contraste */
+.quote-card {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  border: 1px solid #bfdbfe;
+}
+
+[data-theme="dark"] .quote-card {
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  border-color: #1e40af;
+}
+
+.quote-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  /* Gradiente de azuis no hover */
+  background: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.quote-card:hover::before {
+  opacity: 1;
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.quote-icon {
+  font-size: 4rem;
+  color: var(--color-blue-600);
+  opacity: 0.3;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .quote-icon {
+  color: var(--color-blue-400);
+}
+
+/* Melhorando contraste do texto da citação */
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-style: italic;
+  line-height: 1.9;
+  font-weight: 400;
+  color: var(--color-text); /* Usa a variável com bom contraste */
+}
+
+.quote-author {
+  display: block;
+  font-size: 1rem;
+  font-style: normal;
+  color: #1e3a8a; /* Azul escuro no modo claro */
+  font-weight: 600;
+}
+
+[data-theme="dark"] .quote-author {
+  color: #93c5fd; /* Azul claro no modo escuro */
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 60px;
+  background-color: var(--color-border);
+  overflow: hidden;
+}
+
+.scroll-line {
+  width: 100%;
+  height: 30px;
+  background-color: var(--color-primary);
+  animation: scrollAnimation 2s ease-in-out infinite;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+
+.btn {
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de brilho ao passar o mouse */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-primary {
+  /* Usando gradiente de azuis mais vibrante */
+  background: linear-gradient(135deg, var(--color-blue-600), var(--color-blue-800));
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700));
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+  color: white;
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-light {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .btn-light:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===================================
+   Sections
+   =================================== */
+
+.about-section {
+  background-color: var(--color-bg);
+}
+
+[data-theme="dark"] .about-section {
+  /* Adicionando tom de azul sutil */
+  background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+}
+
+.section-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem); /* Maior */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+/* Melhorando contraste do subtítulo da seção */
+.section-subtitle {
+  font-size: 1.35rem;
+  color: var(--color-text-secondary); /* Usa a variável com bom contraste */
+  line-height: 1.9;
+  max-width: 850px;
+  font-family: var(--font-accent);
+  margin: 0 auto;
+}
+
+/* Feature Cards */
+.feature-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .feature-card {
+  background-color: var(--color-bg-secondary);
+  border-color: #1e40af;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  /* Usando gradiente de azuis */
+  background: linear-gradient(135deg, var(--color-blue-100), var(--color-blue-200));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--color-blue-700);
+  font-size: 2rem;
+  transition: all var(--transition-base);
+}
+
+[data-theme="dark"] .feature-icon {
+  background: linear-gradient(135deg, var(--color-blue-800), var(--color-blue-700));
+  color: var(--color-blue-200);
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.feature-title {
+  font-size: 1.65rem; /* Maior */
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+/* Melhorando contraste da descrição do feature card */
+.feature-description {
+  color: var(--color-text-secondary); /* Usa a variável com bom contraste */
+  line-height: 1.8; /* Mais espaçamento */
+  font-size: 1.05rem; /* Maior */
+}
+
+/* Nova seção: Why Section */
+/* Ajustando fundo da why section */
+.why-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 100%);
+}
+
+[data-theme="dark"] .why-section {
+  background: linear-gradient(180deg, #1e293b 0%, #172554 100%);
+}
+
+.insight-list {
+  list-style: none;
+  padding: 0;
+}
+
+.insight-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.15rem; /* Maior */
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+/* Melhorando contraste da resposta do insight */
+.insight-answer {
+  color: var(--color-text-secondary); /* Usa a variável com bom contraste */
+  line-height: 1.8;
+  font-size: 1.05rem; /* Maior */
+}
+
+/* ===================================
+   CTA Section
+   =================================== */
+
+.cta-section {
+  /* Usando gradiente de azuis mais vibrante */
+  background: linear-gradient(135deg, var(--color-blue-700), var(--color-blue-900));
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .cta-section {
+  background: linear-gradient(135deg, var(--color-blue-800), var(--color-blue-950));
+}
+
+.cta-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem); /* Maior */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: white;
+}
+
+.cta-text {
+  font-size: 1.35rem; /* Maior */
+  line-height: 1.8; /* Mais espaçamento */
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===================================
+   Footer
+   =================================== */
+
+/* Ajustando fundo do footer */
+.footer {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 100%);
+  border-top: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .footer {
+  background: linear-gradient(180deg, #0f172a 0%, #172554 100%);
+  border-top-color: #1e40af;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.65rem; /* Maior */
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+}
+
+/* Melhorando contraste do texto do footer */
+.footer-text {
+  color: var(--color-text-secondary); /* Usa a variável com bom contraste */
+  line-height: 1.8;
+  font-size: 1.05rem; /* Maior */
+}
+
+.footer-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
+  padding-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .social-link {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+.social-link:hover {
+  /* Usando cor primária (azul) no hover */
+  background: linear-gradient(135deg, var(--color-blue-600), var(--color-blue-700));
+  border-color: var(--color-primary);
+  color: white;
+  transform: translateY(-3px) rotate(5deg);
+}
+
+.footer-divider {
+  border-color: var(--color-border);
+  opacity: 1;
+}
+
+.footer-copyright {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Estilos para citações e referências */
+.reference {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-blue-500);
+}
+
+[data-theme="dark"] .reference {
+  border-left-color: var(--color-blue-600);
+}
+
+.reference-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.reference-list li {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.reference-list li::before {
+  content: "[" counter(list-item) "]";
+  position: absolute;
+  left: 0;
+  color: var(--color-blue-600);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .reference-list li::before {
+  color: var(--color-blue-400);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  .hero-title {
+    font-size: 2.75rem; /* Ajustado */
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem; /* Ajustado */
+  }
+
+  .quote-card {
+    padding: 2rem;
+  }
+
+  .quote-text {
+    font-size: 1.25rem; /* Ajustado */
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 2.25rem; /* Ajustado */
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem; /* Ajustado */
+  }
+
+  body {
+    font-size: 17px; /* Ligeiramente menor em mobile */
+  }
+}
+
+/* ===================================
+   Animations
+   =================================== */
+
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
+}
+
+[data-aos="fade-right"] {
+  transform: translateX(-30px);
+}
+
+[data-aos="fade-right"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="fade-left"] {
+  transform: translateX(30px);
+}
+
+[data-aos="fade-left"].aos-animate {
+  transform: translateX(0);
+}
+
+[data-aos="zoom-in"] {
+  transform: scale(0.95);
+}
+
+[data-aos="zoom-in"].aos-animate {
+  transform: scale(1);
+}
+
+/* Animação de carregamento suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Melhor indicador de loading */
+.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.loading::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 9999;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Evitar overflow horizontal quando AOS aplica transform/animation */
+[data-aos].aos-animate,
+.aos-animate {
+  overflow-x: hidden !important;
+}
+
+/* Protege wrappers comuns que podem receber animação */
+.puzzle-wrapper,
+.puzzle-grid,
+.puzzle-cell,
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ======= FIX GLOBAL PARA OVERFLOW HORIZONTAL (APLICAR NO FINAL DO ARQUIVO) ======= */
+/* Força a viewport máxima e esconde qualquer overflow horizontal persistente */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
+/* Garante que filhos diretos não ultrapassem a viewport (evita 100vw + scrollbars) */
+body > * {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Ocultar a barra de rolagem visual em todas as páginas (mantém a rolagem
+   funcionando, apenas remove a UI da barra). Compatível com WebKit, Firefox
+   e IE/Edge legados.
+   Se preferir restaurar a barra, remova este bloco.
+   -------------------------------------------------------------------------- */
+/* Desabilita rolagem em toda a página (remove scroll vertical e horizontal)
+   Se precisar permitir rolagem interna em áreas específicas, podemos adicionar
+   overflow:auto nesses containers. */
+html, body {
+  height: 100%;
+  overflow: hidden !important;
+}
+
+/* Protege containers e sections que podem receber animações/transforms */
+.container,
+.container-fluid,
+.row,
+header,
+section,
+footer,
+.main-content,
+.navbar,
+.hero-section,
+.page-header {
+  overflow-x: hidden;
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Imagens/mídia */
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduz artefatos quando AOS (ou outras animações) aplica transforms */
+[data-aos],
+[data-aos] * {
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Pseudo-elementos às vezes causam overflow (ex.: outline gradientes) */
+*::before,
+*::after {
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Classes "full-bleed" ou pseudo elementos com posicionamento absoluto */
+.full-bleed,
+.hero-section::before,
+.quote-card::before,
+.header-graphic,
+.footer-graphic {
+  left: 0;
+  right: 0;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* regra de segurança: evita que transform translateX excessivo mostre barra */
+html, body {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+/* Se ainda persistir, inspeccione no DevTools qual elemento ultrapassa 100vw —
+   geralmente é imagem com width fixa, elemento com margin negativa ou elemento com width:100vw combinado com scrollbar. */
+
+/* ========== OVERRIDES GLOBAIS PARA REDUZIR TAMANHOS ========== */
+/* Ajuste base para toda a página */
+body {
+  font-size: 16px !important; /* reduzido de 18px */
+  line-height: 1.6 !important;
+}
+
+/* Navbar / brand */
+.navbar-brand {
+  font-size: 1.25rem !important;
+}
+.brand-icon {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 1rem !important;
+}
+
+/* Hero - títulos e ícones */
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.25rem) !important; /* menor e mais controlado */
+}
+.hero-subtitle {
+  font-size: 1rem !important;
+}
+.hero-icon {
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 1.25rem !important;
+}
+
+/* Section / page titles */
+.section-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem) !important;
+}
+
+/* Feature cards and icons */
+.feature-card {
+  padding: 1.25rem !important; /* menos espaço interno */
+}
+.feature-icon {
+  width: 64px !important;
+  height: 64px !important;
+  font-size: 1.4rem !important;
+}
+.feature-title {
+  font-size: 1.25rem !important;
+}
+
+/* Quote card smaller */
+.quote-card {
+  padding: 1.25rem !important;
+}
+.quote-text {
+  font-size: 1.1rem !important;
+}
+
+/* Buttons: menos padding e tamanho de fonte menor */
+.btn {
+  padding: 0.5rem 1.25rem !important;
+  font-size: 0.95rem !important;
+}
+.btn-lg {
+  padding: 0.6rem 1.5rem !important;
+  font-size: 1rem !important;
+}
+
+/* Footer */
+.footer-brand {
+  font-size: 1.25rem !important;
+}
+.footer-text {
+  font-size: 0.95rem !important;
+}
+
+/* Imagens - limitar capas grandes e avatares */
+.capa {
+  max-width: 60% !important; /* sobrescreve inline style de 80% */
+  height: auto !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure img,
+img.img-fluid {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Equipe / avatares: reduzir e padronizar */
+.team-avatar img {
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* Cards gerais e containers: menos padding em telas grandes */
+.stage-card,
+.story-card,
+.character-card,
+.symbol-card,
+.team-card {
+  padding: 1.25rem !important;
+}
+
+/* Timeline / bloco de citação */
+.feature-description,
+.stage-description,
+.story-card p,
+.team-bio {
+  font-size: 0.98rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Ajustes responsivos adicionais */
+@media (max-width: 992px) {
+  .capa { max-width: 70% !important; }
+  .hero-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+  .brand-icon { width: 34px !important; height: 34px !important; }
+  .feature-icon { width: 56px !important; height: 56px !important; }
+  .team-avatar img { width: 96px !important; height: 96px !important; }
+}
+
+@media (max-width: 576px) {
+  .capa { max-width: 90% !important; }
+  .hero-title { font-size: 1.6rem !important; }
+  .navbar-brand { font-size: 1rem !important; }
+  .btn { width: auto !important; }
+}
+
+/* Se quiser reduzir ainda mais, diminua font-size do body para 15px.
+   Se alguns elementos continuarem grandes, envie print do DevTools com
+   o elemento selecionado que eu adiciono regra específica. */
